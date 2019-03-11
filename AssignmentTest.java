@@ -10,7 +10,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-
+import java.util.concurrent.TimeUnit;
 
 public class AssignmentTest {
 	public static WebDriver driver;
@@ -22,7 +22,7 @@ public class AssignmentTest {
 		driver = new ChromeDriver();
 		driver.manage().window().maximize();
 		
-		Thread.sleep(3000);
+		driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS) ;
 
 }
 	@Test()
@@ -32,12 +32,11 @@ public class AssignmentTest {
 	       	String keywordSearch = "news";
       		driver.findElement(By.xpath("//input[@title='Search']")).sendKeys(keywordSearch);
 
-	     List<WebElement> allOptions = driver.findElements(By.xpath("//ul[@role='listbox']"));
+	     	List<WebElement> allOptions = driver.findElements(By.xpath("//ul[@role='listbox']"));
 		
-    	     for (int i = 0; i < allOptions.size(); i++) {
-		String option = ((WebElement) allOptions.get(i)).getText();
-       		System.out.println("option displaying are as" +option);
-	  	
+    	     	for (int i = 0; i < allOptions.size(); i++) {
+			String option = ((WebElement) allOptions.get(i)).getText();
+       			System.out.println("option displaying are as" +option);
 		}
 		List<WebElement> list = driver.findElements(By.xpath("//*[contains(text(),'" + keywordSearch  + "')]"));
       		Assert.assertTrue(list.size() > 0);
