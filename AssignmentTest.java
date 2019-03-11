@@ -1,4 +1,4 @@
-package com.packages.student;
+package com.packages.assignment;
 
 import java.io.IOException;
 import java.util.List;
