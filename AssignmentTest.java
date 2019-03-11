@@ -18,27 +18,28 @@ public class AssignmentTest {
 	@BeforeClass
 	public void launchBrowser() throws InterruptedException{
 
-System.setProperty("webdriver.chrome.driver", "C:/workspace/Project/BrowserExecutables/chromedriver.exe");
+		System.setProperty("webdriver.chrome.driver", "C:/workspace/Project/BrowserExecutables/chromedriver.exe");
 		driver = new ChromeDriver();
-driver.manage().window().maximize();
+		driver.manage().window().maximize();
 		
-Thread.sleep(3000);
+		Thread.sleep(3000);
 
-
-	}
+}
 	@Test()
-	public void TC_Regression_126() throws IOException, InterruptedException{
-	     driver.get("https://www.google.com/");
-	       String keywordSearch = "news";
-       driver.findElement(By.xpath("//input[@title='Search']")).sendKeys(keywordSearch);
+	public void TestCase() throws IOException, InterruptedException{
+	     
+		driver.get("https://www.google.com/");
+	       	String keywordSearch = "news";
+      		driver.findElement(By.xpath("//input[@title='Search']")).sendKeys(keywordSearch);
 
 	     List<WebElement> allOptions = driver.findElements(By.xpath("//ul[@role='listbox']"));
-      for (int i = 0; i < allOptions.size(); i++) {
-				String option = ((WebElement) allOptions.get(i)).getText();
-       System.out.println("option displaying are as" +option);
-	  List<WebElement> list = driver.findElements(By.xpath("//*[contains(text(),'" + keywordSearch  + "')]"));
-      Assert.assertTrue(list.size() > 0);
+		
+    	     for (int i = 0; i < allOptions.size(); i++) {
+		String option = ((WebElement) allOptions.get(i)).getText();
+       		System.out.println("option displaying are as" +option);
+	  	
+		}
+		List<WebElement> list = driver.findElements(By.xpath("//*[contains(text(),'" + keywordSearch  + "')]"));
+      		Assert.assertTrue(list.size() > 0);
 	}
-	
-}
 }
